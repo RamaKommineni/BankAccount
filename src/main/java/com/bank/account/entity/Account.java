@@ -82,8 +82,27 @@ public class Account extends Auditable<String> implements Serializable {
     @JsonBackReference
     @ManyToOne
     private AccountUser accountUserId;
+    
+    
 
-    public Long getId() {
+    public Account(@NotNull Long id, Long accountNumber, @Size(max = 20) String accountName, Date balanceDate,
+			@Size(max = 4) String currency, Float balance, @Size(max = 255) String notes,
+			Collection<AccountTransaction> accountTransactionCollection, AccountType accountTypeId,
+			AccountUser accountUserId) {
+		super();
+		this.id = id;
+		this.accountNumber = accountNumber;
+		this.accountName = accountName;
+		this.balanceDate = balanceDate;
+		this.currency = currency;
+		this.balance = balance;
+		this.notes = notes;
+		this.accountTransactionCollection = accountTransactionCollection;
+		this.accountTypeId = accountTypeId;
+		this.accountUserId = accountUserId;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
