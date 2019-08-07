@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.account.entity.Account;
-import com.bank.account.entity.AccountTransaction;
+import com.bank.account.exception.AccountException;
 import com.bank.account.model.AccountDto;
 import com.bank.account.model.ResponseMsg;
 import com.bank.account.repository.AccountRepo;
@@ -25,9 +25,12 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	AccountTransactionService accountTransactionService;
 	
-	public ResponseMsg getAccountsListByUserId(String userId) {
+	public ResponseMsg getAccountsListByUserId(String userId) throws AccountException{
 		
 		List<Account> accountsList = accountRepo.findByAccountUserIdLoginName(userId);
+		
+		if(accountsList == null)
+			throw new AccountException("Accounts do not exist with name:"+ userId);
 		
 		return new ResponseMsg(1, "SUCCESS", convertDtoList(accountsList, false), "","","");
 	}

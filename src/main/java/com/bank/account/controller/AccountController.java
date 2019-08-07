@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.account.exception.AccountException;
 import com.bank.account.model.ResponseMsg;
 import com.bank.account.service.AccountService;
 
@@ -22,10 +23,13 @@ public class AccountController {
 	
 	@RequestMapping(value="/{userId}", method= RequestMethod.GET)
 	public ResponseEntity<ResponseMsg> getAccountsListByUserId(HttpServletRequest request, @PathVariable String userId) {
-		
-		ResponseMsg responseMsg = accountService.getAccountsListByUserId(userId);
-		
-		return new ResponseEntity<ResponseMsg>(responseMsg, HttpStatus.OK);
+		try {
+			ResponseMsg responseMsg = accountService.getAccountsListByUserId(userId);
+			return new ResponseEntity<ResponseMsg>(responseMsg, HttpStatus.OK);
+		}catch(AccountException e) {
+			ResponseMsg responseMsg = new ResponseMsg(-1, "ERROR", null, null, null, e.getMessage());
+			return new ResponseEntity<ResponseMsg>(responseMsg, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value="/{accountNumber}/transactions", method= RequestMethod.GET)
