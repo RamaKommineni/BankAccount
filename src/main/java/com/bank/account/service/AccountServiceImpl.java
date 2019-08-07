@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.bank.account.entity.Account;
 import com.bank.account.exception.AccountException;
 import com.bank.account.model.AccountDto;
-import com.bank.account.model.ResponseMsg;
 import com.bank.account.repository.AccountRepo;
 
 @Service
@@ -25,21 +24,24 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	AccountTransactionService accountTransactionService;
 	
-	public ResponseMsg getAccountsListByUserId(String userId) throws AccountException{
+	public List<AccountDto> getAccountsListByUserId(String userId) throws AccountException{
 		
+		if(userId == null || userId.equals(""))
+			throw new AccountException("UserId is mandatory to get Accounts List");
+
 		List<Account> accountsList = accountRepo.findByAccountUserIdLoginName(userId);
 		
-		if(accountsList == null)
-			throw new AccountException("Accounts do not exist with name:"+ userId);
-		
-		return new ResponseMsg(1, "SUCCESS", convertDtoList(accountsList, false), "","","");
+		return this.convertDtoList(accountsList, false);
 	}
 	
-	public ResponseMsg getAccountByAccountNumber(Long accountNumber) {
+	public AccountDto getTransactionsByAccountNumber(Long accountNumber) throws AccountException {
+		
+		if(accountNumber == null)
+			throw new AccountException("Account Number is mandatory to get Account details");
 		
 		Account account = accountRepo.findByAccountNumber(accountNumber);
 		
-		return new ResponseMsg(1, "SUCCESS", convertToDto(account, true), "","","");
+		return this.convertToDto(account, true);
 	}
 	
 	private List<AccountDto> convertDtoList(List<Account> accountsList, Boolean includeTransactions){
@@ -55,6 +57,7 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDto convertToDto(Account account, Boolean includeTransactions) {
 	    //AccountDto accountDto = modelMapper.map(account, AccountDto.class);
 		AccountDto accountDto = new AccountDto();
+		accountDto.setId(account.getId());
 		accountDto.setAccountNo(account.getAccountNumber());
 		accountDto.setAccountName(account.getAccountName());
 		accountDto.setAccountType(account.getAccountTypeId().getName());

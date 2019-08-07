@@ -5,6 +5,7 @@ import java.util.List;
 
 public class AccountDto {
 	
+	private Long id;
 	private Long accountNo;
 	private String accountName;
 	private String accountType;
@@ -12,6 +13,31 @@ public class AccountDto {
 	private Date balanceDate;
 	private List<AccountTransactionDto> accountTransactionDto;
 	
+	
+	public AccountDto() {
+		super();
+	}
+
+	public AccountDto(Long id, Long accountNo, String accountName, String accountType, Float balance, Date balanceDate,
+			List<AccountTransactionDto> accountTransactionDto) {
+		super();
+		this.id = id;
+		this.accountNo = accountNo;
+		this.accountName = accountName;
+		this.accountType = accountType;
+		this.balance = balance;
+		this.balanceDate = balanceDate;
+		this.accountTransactionDto = accountTransactionDto;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getAccountNo() {
 		return accountNo;
 	}

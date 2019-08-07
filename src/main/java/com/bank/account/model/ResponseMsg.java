@@ -8,17 +8,13 @@ public class ResponseMsg {
 	private int returnCode;
 	private String response;
 	private Object data;
-	private String status;
-	private String id;
 	private String message;
 	
-	public ResponseMsg(int returnCode, String response, Object data, String status, String id, String message) {
+	public ResponseMsg(int returnCode, String response, Object data, String message) {
 		super();
 		this.returnCode = returnCode;
 		this.response = response;
 		this.data = data;
-		this.status = status;
-		this.id = id;
 		this.message = message;
 	}
 	
@@ -49,23 +45,7 @@ public class ResponseMsg {
 	public void setData(Object data) {
 		this.data = data;
 	}
-	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-	
+
 	public String getMessage() {
 		return message;
 	}
@@ -76,8 +56,8 @@ public class ResponseMsg {
 
 	@Override
 	public String toString() {
-		return "ResponseMsg [returnCode=" + returnCode + ", response=" + response + ", data=" + data + ", status="
-				+ status + ", id=" + id + ", message=" + message + "]";
+		return "ResponseMsg [returnCode=" + returnCode + ", response=" + response + ","
+				+ " data=" + data +  ", message=" + message + "]";
 	}
 
 	

@@ -83,9 +83,11 @@ public class Account extends Auditable<String> implements Serializable {
     @ManyToOne
     private AccountUser accountUserId;
     
-    
+    public Account() {
+		super();
+	}
 
-    public Account(@NotNull Long id, Long accountNumber, @Size(max = 20) String accountName, Date balanceDate,
+	public Account(@NotNull Long id, Long accountNumber, @Size(max = 20) String accountName, Date balanceDate,
 			@Size(max = 4) String currency, Float balance, @Size(max = 255) String notes,
 			Collection<AccountTransaction> accountTransactionCollection, AccountType accountTypeId,
 			AccountUser accountUserId) {
