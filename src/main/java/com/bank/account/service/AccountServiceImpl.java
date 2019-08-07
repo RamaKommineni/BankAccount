@@ -44,6 +44,11 @@ public class AccountServiceImpl implements AccountService {
 		return this.convertToDto(account, true);
 	}
 	
+	public Account getAccountByName(String accountName) {
+		return accountRepo.findByAccountName(accountName);
+	}
+
+	
 	private List<AccountDto> convertDtoList(List<Account> accountsList, Boolean includeTransactions){
 		List<AccountDto> accountDtoList = new ArrayList<AccountDto>();
 		
