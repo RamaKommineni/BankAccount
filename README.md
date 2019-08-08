@@ -49,6 +49,9 @@ Http method= GET
 add following  http headers:
 key=Content-Type value=application/json
 
+Design Patterns Used:
+IOC, Facade
+
 Testing:
 
 JUnit coverage is provided for the application using the Mockito framework.
