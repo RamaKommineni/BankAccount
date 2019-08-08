@@ -35,35 +35,25 @@ This will create a folder BankAccount in your current working directory.
 
 Using application:
 
-Create some bets using any Rest client (I have used Postman)
+Query the below enpoints in PostMan to get the prepopulated records
 
-endpoint URL: http://localhost:8080/api/bet/create
-
+1) And endpoint to get list of accounts registered under one user
+endpoint URL: http://localhost:8080/bankapp/api/account/rama@gmail.com
 http method= GET
-
 add following  http headers:
- 
 key=Content-Type value=application/json
 
- 
-  
-==>Run the following endpoint to get Total investment per bet type:
-
-endpoint URL: http://localhost:8080/api/bet/getInvestmentPerBetType
-
+2) And endpoint to get list of transactions under one account
+Endpoint URL: http://localhost:8080/bankapp/api/account/585309209/transactions
+Http method= GET
+add following  http headers:
 key=Content-Type value=application/json
-
-"method": "GET"
-
-
- 
 
 Testing:
 
 JUnit coverage is provided for the application using the Mockito framework.
 
 Author
-
 Rama Kommineni
 
 
