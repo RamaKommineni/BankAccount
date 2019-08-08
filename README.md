@@ -1,4 +1,4 @@
-                                   Tabcorp coding challenge
+                                   ANZ coding challenge
 
 Design / Architecture:
 
@@ -26,97 +26,37 @@ Tech-Stack Used to build application:
 9) Build Environment: SpringToolSuit(STS)
 
 
-Application Assumptions:
-Regarding (Total number of bets sold per hour) rest endpoint, requirement was not clear. So I have assumed that I will pass fromDate and toDate as request parameters to limit the number of records return in the response.
-
-
-How to run this application
+How to run this application:
 
 Clone the git repo using following command
-git clone https://github.com/RamaKommineni/Tabcorp.git
+git clone https://github.com/RamaKommineni/BankAccount.git
 
-This will create a folder tabcorp in your current working directory.
+This will create a folder BankAccount in your current working directory.
 
 Using application:
 
-Create some bets using any Rest client (I have used Postman)
+Query the below enpoints in PostMan to get the prepopulated records
 
-endpoint URL: http://localhost:8080/api/bet/create
-
-http method= POST
-
+1) And endpoint to get list of accounts registered under one user
+endpoint URL: http://localhost:8080/bankapp/api/account/rama@gmail.com
+http method= GET
 add following  http headers:
- 
 key=Content-Type value=application/json
 
-Paste the following content to the body section then click send
-
-{
- "customerID":345,
- 
- "dateTime":"2019-05-28 11:58",
- 
-  "betType":"WIN",
-  
-  "propNumber":456,
-  
-  "investment":2000 
-  
-  }
-  
-By running this URL multiple times with the different bets, we can create multiple bets and can be stored in DB for testing the rest of the api's.
-  
-==>Run the following endpoint to get Total investment per bet type:
-
-endpoint URL: http://localhost:8080/api/bet/getInvestmentPerBetType
-
+2) And endpoint to get list of transactions under one account
+Endpoint URL: http://localhost:8080/bankapp/api/account/585309209/transactions
+Http method= GET
+add following  http headers:
 key=Content-Type value=application/json
 
-"method": "GET"
-
-
-==>Run the following endpoint to get Total investment per CustomerID:
-
-endpoint URL: http://localhost:8080/api/bet/getInvestmentPerCustomerID
-
-key=Content-Type value=application/json
-
-"method": "GET"
-
-
-
-==>Run the following endpoint to get Total bets sold per BetType
-
-endpoint URL: http://localhost:8080/api/bet/getTotalBetsSoldPerBetType
-
-key=Content-Type value=application/json
-
-"method": "GET"
-
-
-
-==>Run the following endpoint to get Total number of bets sold per Hour
-
-endpoint URL: http://localhost:8080/api/bet/getTotalNumberOfBetsSoldPerHour
-
-key=Content-Type value=application/json
-
-"method": "GET"
-
-Here we need to send the toDate and fromDate query params to get the bets sold per hour.
-
-"key": "fromDate", "value": "2019-05-24"
-
-"key": "toDate","value": "2019-05-27"
-
-
+Design Patterns Used:
+IOC, Facade
 
 Testing:
 
 JUnit coverage is provided for the application using the Mockito framework.
 
 Author
-
 Rama Kommineni
 
 
