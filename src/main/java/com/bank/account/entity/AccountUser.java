@@ -29,7 +29,7 @@ import lombok.Setter;
  */
 @Entity
 //@Getter @Setter @NoArgsConstructor
-@Table(name = "account_user", schema = "public")
+@Table(name = "ACCOUNT_USER")
 public class AccountUser extends Auditable<String> implements Serializable {
 
     private static final long serialVersionUID = 1L;

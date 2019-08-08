@@ -29,7 +29,7 @@ import lombok.Setter;
  */
 @Entity
 //@Getter @Setter @NoArgsConstructor
-@Table(name = "transaction_type", schema = "public")
+@Table(name = "TRANSACTION_TYPE")
 public class TransactionType implements Serializable {
 
     private static final long serialVersionUID = 1L;

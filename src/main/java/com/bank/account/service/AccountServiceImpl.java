@@ -12,6 +12,10 @@ import com.bank.account.exception.AccountException;
 import com.bank.account.model.AccountDto;
 import com.bank.account.repository.AccountRepo;
 
+/**
+ * @author ramakiran
+ *
+ */
 @Service
 public class AccountServiceImpl implements AccountService {
 	
@@ -48,7 +52,6 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepo.findByAccountName(accountName);
 	}
 
-	
 	private List<AccountDto> convertDtoList(List<Account> accountsList, Boolean includeTransactions){
 		List<AccountDto> accountDtoList = new ArrayList<AccountDto>();
 		
