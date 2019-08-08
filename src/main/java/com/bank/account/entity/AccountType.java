@@ -29,7 +29,7 @@ import lombok.Setter;
  * @author ramakiran
  */
 @Entity
-@Table(name = "account_type", catalog = "virtusa", schema = "public")
+@Table(name = "account_type", schema = "public")
 //@Getter @Setter @NoArgsConstructor
 public class AccountType extends Auditable<String> implements Serializable {
 

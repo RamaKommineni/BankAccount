@@ -29,7 +29,7 @@ import lombok.Setter;
  */
 @Entity
 //@Getter @Setter @NoArgsConstructor
-@Table(name = "transaction_type", catalog = "virtusa", schema = "public")
+@Table(name = "transaction_type", schema = "public")
 public class TransactionType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,7 +55,7 @@ public class TransactionType implements Serializable {
     @Column(name = "notes")
     private String notes;
     
-    @OneToMany(mappedBy = "transactionType")
+    @OneToMany(mappedBy = "transactionTypeId")
     @JsonManagedReference
     private Collection<AccountTransaction> accountTransactionCollection;
 

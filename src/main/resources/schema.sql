@@ -1,103 +1,82 @@
-CREATE TABLE account_user (
-  "id"     BIGINT,
-  "login_name"   VARCHAR(255) NOT NULL UNIQUE,
-  "status" VARCHAR(10),
+
+CREATE TABLE ACCOUNT_USER (
+  ID     BIGINT PRIMARY KEY,
+  LOGIN_NAME   VARCHAR(255) NOT NULL UNIQUE,
+  STATUS VARCHAR(10),
   
-  "updated_at"  timestamptz default now(),
-  "updated_by"  VARCHAR(255),
-  "notes"       VARCHAR(255),
-  "created_at"  timestamptz default now(),
-  "created_by"  VARCHAR(255),
-  PRIMARY KEY ("id")
+  UPDATED_AT  date,
+  UPDATED_BY  VARCHAR(255),
+  NOTES       VARCHAR(255),
+  CREATED_AT  date,
+  CREATED_BY  VARCHAR(255)
 );
 
 CREATE SEQUENCE public.account_user_seq INCREMENT 1 START 1 MINVALUE 1;
 
 
-create table account_type(
-  "id"     BIGINT,
-  "name"   varchar(10),
-  "description" varchar(255),
-  "status" varchar(10),
+create table ACCOUNT_TYPE(
+  ID     BIGINT PRIMARY KEY,
+  NAME   varchar(10),
+  DESCRIPTION varchar(255),
+  STATUS varchar(10),
   
-  "updated_at"  timestamptz default now(),
-  "updated_by"  VARCHAR(255),
-  "notes"       VARCHAR(255),
-  "created_at"  timestamptz default now(),
-  "created_by"  VARCHAR(255),
-  PRIMARY KEY ("id")
+  UPDATED_AT  date,
+  UPDATED_BY  VARCHAR(255),
+  NOTES       VARCHAR(255),
+  CREATED_AT  date,
+  CREATED_BY  VARCHAR(255)
 );
 
 CREATE SEQUENCE account_type_seq INCREMENT 1 START 1 MINVALUE 1;
 
-INSERT INTO account_type
-(id, "name", description, status)
-VALUES(nextval('account_type_seq'), 'SAVINGS', 'Savings Account Type', 'ACTIVE');
-
-INSERT INTO account_type
-(id, "name", description, status)
-VALUES(nextval('account_type_seq'), 'CURRENT', 'Current Account Type', 'ACTIVE');
-
-create table account(
-	"id"     BIGINT,
-	"account_user_id" BIGINT references account_user(id),
-	"account_number" BIGINT unique,
-	"account_name" varchar(20),
-	"account_type_id" BIGINT references account_type(id) NOT NULl,
-	"balance_date" date,
-	"currency" varchar(4),
-	"balance" Float(2),
+create table ACCOUNT(
+	ID     BIGINT PRIMARY KEY,
+	ACCOUNT_USER_ID BIGINT REFERENCES ACCOUNT_USER,
+	ACCOUNT_NUMBER BIGINT unique,
+	ACCOUNT_NAME VARCHAR(20),
+	ACCOUNT_TYPE_ID BIGINT REFERENCES ACCOUNT_TYPE,
+	BALANCE_DATE date,
+	CURRENCY VARCHAR(4),
+	BALANCE Float(2),
 	
-  	"updated_at"  timestamptz default now(),
-  	"updated_by"  VARCHAR(255),
-  	"notes"       VARCHAR(255),
-  	"created_at"  timestamptz default now(),
-  	"created_by"  VARCHAR(255),
-  	PRIMARY KEY ("id")
+  UPDATED_AT  date,
+  UPDATED_BY  VARCHAR(255),
+  NOTES       VARCHAR(255),
+  CREATED_AT  date,
+  CREATED_BY  VARCHAR(255)
 );
 
 CREATE SEQUENCE account_seq INCREMENT 1 START 1 MINVALUE 1;
 
-
-create table transaction_type(
-  "id"     BIGINT,
-  "name"   varchar(10),
-  "description" varchar(255),
-  "status" varchar(10),
+create table TRANSACTION_TYPE(
+  ID     BIGINT PRIMARY KEY,
+  NAME   VARCHAR(10),
+  DESCRIPTION VARCHAR(255),
+  STATUS VARCHAR(10),
   
-  "updated_at"  timestamptz default now(),
-  "updated_by"  VARCHAR(255),
-  "notes"       VARCHAR(255),
-  "created_at"  timestamptz default now(),
-  "created_by"  VARCHAR(255),
-  PRIMARY KEY ("id")
+  UPDATED_AT  date,
+  UPDATED_BY  VARCHAR(255),
+  NOTES       VARCHAR(255),
+  CREATED_AT  date,
+  CREATED_BY  VARCHAR(255)
 );
 
 CREATE SEQUENCE transaction_type_seq INCREMENT 1 START 1 MINVALUE 1;
 
-INSERT INTO transaction_type
-(id, "name", description, status)
-VALUES(nextval('account_type_seq'), 'CREDIT', 'Credit Transaction Type', 'ACTIVE');
-
-INSERT INTO transaction_type
-(id, "name", description, status)
-VALUES(nextval('account_type_seq'), 'DEBIT', 'Debit Transaction Type', 'ACTIVE');
-
-create table account_transaction(
-	"id"     BIGINT,
-	"account_id" BIGINT references account(id),
-	"value_date" date,
-	"debit_amount" Float(2),
-	"credit_amount" Float(2),
-	"transaction_type" BIGINT references transaction_type(id),
-	"narrative" varchar(255),
+create table ACCOUNT_TRANSACTION(
+	ID     BIGINT PRIMARY KEY,
+	ACCOUNT_ID BIGINT REFERENCES account,
+	VALUE_DATE date,
+	DEBIT_AMOUNT Float(2),
+	CREDIT_AMOUNT Float(2),
+	TRANSACTION_TYPE_ID BIGINT REFERENCES transaction_type,
+	NARRATIVE varchar(255),
 	
-  	"updated_at"  timestamptz default now(),
-  	"updated_by"  VARCHAR(255),
-  	"notes"       VARCHAR(255),
-  	"created_at"  timestamptz default now(),
-  	"created_by"  VARCHAR(255),
-  	PRIMARY KEY ("id")
+  UPDATED_AT  date,
+  UPDATED_BY  VARCHAR(255),
+  NOTES       VARCHAR(255),
+  CREATED_AT  date,
+  CREATED_BY  VARCHAR(255)
 );
 
 CREATE SEQUENCE account_transaction_seq INCREMENT 1 START 1 MINVALUE 1;

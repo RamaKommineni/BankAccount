@@ -31,7 +31,7 @@ import lombok.Setter;
  * @author ramakiran
  */
 @Entity
-@Table(name = "account_transaction", catalog = "virtusa", schema = "public")
+@Table(name = "account_transaction", schema = "public")
 //@Getter @Setter @NoArgsConstructor
 public class AccountTransaction extends Auditable<String> implements Serializable {
 
@@ -66,10 +66,10 @@ public class AccountTransaction extends Auditable<String> implements Serializabl
     @ManyToOne
     private Account accountId;
     
-    @JoinColumn(name = "transaction_type", referencedColumnName = "id")
+    @JoinColumn(name = "transaction_type_id", referencedColumnName = "id")
     @JsonBackReference
     @ManyToOne
-    private TransactionType transactionType;
+    private TransactionType transactionTypeId;
 
     public AccountTransaction() {
     }
@@ -134,12 +134,12 @@ public class AccountTransaction extends Auditable<String> implements Serializabl
 		this.accountId = accountId;
 	}
 
-	public TransactionType getTransactionType() {
-		return transactionType;
+	public TransactionType getTransactionTypeId() {
+		return transactionTypeId;
 	}
 
-	public void setTransactionType(TransactionType transactionType) {
-		this.transactionType = transactionType;
+	public void setTransactionTypeId(TransactionType transactionTypeId) {
+		this.transactionTypeId = transactionTypeId;
 	}
 
 	@Override

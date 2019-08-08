@@ -15,7 +15,7 @@ public class AccountTransactionServiceImpl implements AccountTransactionService 
 		
 		AccountTransactionDto accountTransactionDto = new AccountTransactionDto();
 		accountTransactionDto.setId(accountTransaction.getId());
-		accountTransactionDto.setTransactionType(accountTransaction.getTransactionType().getName());
+		accountTransactionDto.setTransactionType(accountTransaction.getTransactionTypeId().getName());
 		accountTransactionDto.setCreditAmount(accountTransaction.getCreditAmount());
 		accountTransactionDto.setDebitAmount(accountTransaction.getDebitAmount());
 		accountTransactionDto.setValueDate(accountTransaction.getValueDate());

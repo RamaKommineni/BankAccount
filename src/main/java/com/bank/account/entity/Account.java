@@ -35,7 +35,7 @@ import lombok.Setter;
  * @author ramakiran
  */
 @Entity
-@Table(name = "account", catalog = "virtusa", schema = "public")
+@Table(name = "account", schema = "public")
 //@Getter @Setter @NoArgsConstructor
 public class Account extends Auditable<String> implements Serializable {
 
